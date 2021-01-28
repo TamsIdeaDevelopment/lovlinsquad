@@ -54,7 +54,7 @@ class CancelOrder extends Command
 //           ]);
 
         $order = Order::where('paid', 0)
-            ->where('created_at', '<=', now()->subMinutes(5)->toDateTimeString())
+            ->where('created_at', '<=', now()->subHours(24)->toDateTimeString())
            ->get();
 
         foreach($order as $key) {
