@@ -1,6 +1,6 @@
 <h2>Order <span style="color: green"> #{{str_pad($order->id, 6, '0', STR_PAD_LEFT)}} </span> Received</h2>
 <br/>
-<img src="http://staging.lovlinsquad.com/assets3/image/logo.png" style="margin-left:100px; height: 100px;">
+<img src="https://lovlinsquad.com/assets3/image/logo.png" style="margin-left:100px; height: 100px;">
 <p>We would like to inform you that we received your order <span style="color: green"> #{{str_pad($order->id, 6, '0', STR_PAD_LEFT)}} </span>. Details as below:</p>
 <table style="margin-left: 100px">
     <tr>

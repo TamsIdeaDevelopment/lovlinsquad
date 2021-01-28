@@ -1,6 +1,6 @@
 <h2>Lovlin Automate Monthly Reminder</h2>
 <br/>
-<img src="http://staging.lovlinsquad.com/assets3/image/logo.png" style="margin-left:100px; height: 100px;">
+<img src="https://lovlinsquad.com/assets3/image/logo.png" style="margin-left:100px; height: 100px;">
 {{--<p>We noticed that <span style="color: red"> haha </span> haven't restock your product for 3 months. Details as below:</p>--}}
 <p>We noticed that <span style="color: red"> {{$user->name}} </span> haven't restock your product for 3 months. Details as below:</p>
 <br/>

@@ -1,6 +1,6 @@
 <h2>Order <span style="color: red"> #{{str_pad($order->id, 6, '0', STR_PAD_LEFT)}} </span> Declined</h2>
 <br/>
-<img src="http://staging.lovlinsquad.com/assets3/image/logo.png" style="margin-left:100px; height: 100px;">
+<img src="https://lovlinsquad.com/assets3/image/logo.png" style="margin-left:100px; height: 100px;">
 <p>We would like to inform you that your order <span style="color: red"> #{{str_pad($order->id, 6, '0', STR_PAD_LEFT)}} </span> have been rejected as order exceed 24 hours. Details as below:</p>
 <table style="margin-left: 100px">
     <tr>
