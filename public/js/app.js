@@ -33041,7 +33041,7 @@ var render = function() {
                     ],
                     staticClass:
                       "form-control form-control-solid form-control-lg",
-                    attrs: { type: "text", placeholder: "State", disabled: "" },
+                    attrs: { type: "text", placeholder: "City", disabled: "" },
                     domProps: { value: _vm.$parent.BillingDetails.city },
                     on: {
                       input: function($event) {
@@ -33076,11 +33076,7 @@ var render = function() {
                     ],
                     staticClass:
                       "form-control form-control-solid form-control-lg",
-                    attrs: {
-                      type: "text",
-                      placeholder: "Postcode",
-                      disabled: ""
-                    },
+                    attrs: { type: "text", placeholder: "State", disabled: "" },
                     domProps: { value: _vm.$parent.BillingDetails.state },
                     on: {
                       input: function($event) {
@@ -33113,7 +33109,11 @@ var render = function() {
                     ],
                     staticClass:
                       "form-control form-control-solid form-control-lg",
-                    attrs: { type: "text", placeholder: "State", disabled: "" },
+                    attrs: {
+                      type: "text",
+                      placeholder: "Country",
+                      disabled: ""
+                    },
                     domProps: { value: _vm.$parent.BillingDetails.country },
                     on: {
                       input: function($event) {
@@ -33325,7 +33325,7 @@ var render = function() {
                       }
                     ],
                     staticClass: "form-control form-control-lg",
-                    attrs: { type: "text", placeholder: "State" },
+                    attrs: { type: "text", placeholder: "City" },
                     domProps: { value: _vm.$parent.DeliveryDetails.city },
                     on: {
                       input: function($event) {
@@ -33369,7 +33369,7 @@ var render = function() {
                       }
                     ],
                     staticClass: "form-control form-control-lg",
-                    attrs: { type: "text", placeholder: "Postcode" },
+                    attrs: { type: "text", placeholder: "State" },
                     domProps: { value: _vm.$parent.DeliveryDetails.state },
                     on: {
                       input: function($event) {
@@ -33411,7 +33411,7 @@ var render = function() {
                       }
                     ],
                     staticClass: "form-control form-control-lg",
-                    attrs: { type: "text", placeholder: "State" },
+                    attrs: { type: "text", placeholder: "Country" },
                     domProps: { value: _vm.$parent.DeliveryDetails.country },
                     on: {
                       input: function($event) {
