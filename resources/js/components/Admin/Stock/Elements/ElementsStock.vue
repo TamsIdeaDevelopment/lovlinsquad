@@ -34,11 +34,11 @@
                 <td>
                     <div class="row">
                         <div class="col-lg-6">
-                            <input class="form-control" style="width: 100%" disabled type="number" v-model="Product.quantity">
+                            <input class="form-control" style="width: 100%" type="number" v-model="Product.quantity">
                         </div>
-                        <!--<div class="col-lg-6">-->
-                            <!--<a @click="addProduct(data2,Product.product_id.id, Product.quantity)" class="btn btn-primary">Save</a>-->
-                        <!--</div>-->
+                        <div class="col-lg-6">
+                            <a @click="addProduct(data2,Product.product_id.id, Product.quantity)" class="btn btn-primary">Save</a>
+                        </div>
                     </div>
                 </td>
             </tr>

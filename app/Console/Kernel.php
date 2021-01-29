@@ -24,7 +24,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('Cancel:Order')->everySixHours();
+//        $schedule->command('Cancel:Order')->everySixHours();
+
 //         $schedule->command('Cancel:Order')->twiceDaily(1, 13);
 //         $schedule->command('Cancel:Order')->everyTwoMinutes();
 
@@ -32,9 +33,10 @@ class Kernel extends ConsoleKernel
 //         $schedule->command('Cancel:Order')->everyFiveMinutes();
 //         $schedule->command('Cancel:Order')->everyTwoMinutes();
 //
-        $schedule->command('monthly:membership')
-            ->monthlyOn(1, '00:00');
-//         $schedule->command('monthly:membership')->everyMinute();
+//        $schedule->command('monthly:membership')
+//            ->monthlyOn(1, '00:00');
+
+         $schedule->command('monthly:membership')->everyMinute();
     }
 
     /**
