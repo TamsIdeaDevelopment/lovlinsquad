@@ -116,7 +116,6 @@ class ListProduct
     public function StockLeaderList($user_id)
     {
 
-
         $agent_detail = $this->agent_details->agentInformation($user_id);
 
 
@@ -141,6 +140,7 @@ class ListProduct
 
             }
             $product_details = json_decode(json_encode($product_details), false);
+
             return StockLeaderResources::collection($product_details);
         }
 
@@ -149,10 +149,11 @@ class ListProduct
             $product = $this->stockListPriceAndMOQ($user_id);
 
 
-
             $stock_leader = $this->stock_leader->where('user_id',$leader_id)->get();
 
+
             $stock_details = array();
+
             foreach($stock_leader as $key)
             {
                 $stock_details[] = array(
@@ -161,6 +162,7 @@ class ListProduct
                 );
 
             }
+
             $product_details = array();
             foreach($product as $data)
             {
@@ -181,7 +183,8 @@ class ListProduct
                     // Check for date, size and type
                     if ($data['product_id']===$value['product_id']) {
                         $final[$key]['price'] = $value['price'];
-                        $final[$key]['ss_price'] = $value['price'];
+                        $final[$key]['ss_price'] = $value['ss_price'];
+                        $final[$key]['sg_brn_price'] = $value['sg_brn_price'];
                         $final[$key]['price'] = $value['price'];
                         $final[$key]['minimum_order'] = $value['minimum_order'];
                         $flag = 1;

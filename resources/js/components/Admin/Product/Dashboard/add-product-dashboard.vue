@@ -90,6 +90,7 @@
                 fetch('/api/v1/roles/Lists/exclude-hq-role').then(response => response.json())
                     .then(response => {
                         this.Roles = response.data;
+                        console.log(this.Roles.length);
                     })
                     .catch(error => console.log(error))
             },

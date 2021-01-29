@@ -3729,6 +3729,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return response.json();
       }).then(function (response) {
         _this.Roles = response.data;
+        console.log(_this.Roles.length);
       })["catch"](function (error) {
         return console.log(error);
       });
@@ -19748,7 +19749,7 @@ var render = function() {
                           attrs: { type: "text", id: "myInput" },
                           domProps: {
                             value:
-                              "http://staging.lovlinsquad.com/invite/LN" +
+                              "https://lovlinsquad.com/invite/LN" +
                               String(
                                 "00000" + this.AgentDetails.member_no
                               ).slice(-5)
@@ -35801,7 +35802,7 @@ var render = function() {
                           attrs: { type: "text", id: "myInput" },
                           domProps: {
                             value:
-                              "http://staging.lovlinsquad.com/invite/LN" +
+                              "https://lovlinsquad.com/invite/LN" +
                               String(
                                 "00000" + this.AgentDetails.member_no
                               ).slice(-5)
