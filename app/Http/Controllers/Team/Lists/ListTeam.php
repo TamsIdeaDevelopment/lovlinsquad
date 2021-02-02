@@ -130,14 +130,79 @@ class ListTeam
     }
     public function listNewLeaderBasedOnParent($id)
     {
-        $parent_name = $this->agent_levels->findOrFail($id);
+        $agent_level = $this->agent_levels->where('priority','<',$id)->get();
 
-        $agent_level = $this->agent_levels->where('name', $parent_name->parent)->first();
-
-        $data = $this->repository->where([
-            ['agent_levels_id', '=', $agent_level->id],
+        $listLeader= $this->repository->where([
+            ['agent_levels_id', '<', $id],
             ['status', '=', '1']])->latest()->get();
 
-        return AgentResources::collection($data);
+        return AgentResources::collection($listLeader);
+
+//        $parent_name = $this->agent_levels->findOrFail($id);
+//
+//        $agent_level = $this->agent_levels->where('name', $parent_name->parent)->first();
+//
+//        $data = $this->repository->where([
+//            ['agent_levels_id', '=', $agent_level->id],
+//            ['status', '=', '1']])->latest()->get();
+//
+//        return AgentResources::collection($data);
+//        $agent_level = $this->agent_levels->where('priority','<',$id)->get();
+//
+//        foreach ($agent_level as $data)
+//        {
+//
+//            $listLeader[]= $this->repository->where([
+//                ['agent_levels_id', '=', $data['id']],
+//                ['status', '=', '1']])->latest()->first();
+//        }
+//        $object = json_decode(json_encode($listLeader), true);
+//        $a = array();
+//        foreach($object as $data)
+//        {
+//            if ($data !== null) {
+//                $a[] = array(
+////                'id' => $data[0]['id'],
+////                'point' => $data[0]['point'],
+////                'HQ' => $data[0]['HQ'],
+////                'user_id' => $data[0]['user_id'],
+////                'agent_levels_id' => $data[0]['agent_levels_id'],
+////                'leader_id' => $data[0]['leader_id'],
+////                'referral_id' => $data[0]['referral_id'],
+////                'territory_id' => $data[0]['territory_id'],
+////                'state_id' => $data[0]['state_id'],
+////                'city' => $data[0]['city'],
+////                'district' => $data[0]['district'],
+////                'country' => $data[0]['country'],
+////                'paid' => $data[0]['paid'],
+////                'status' => $data[0]['status'],
+////                'member_no' => $data[0]['member_no'],
+////                'created_at' => $data[0]['created_at'],
+////                'updated_at' => $data[0]['updated_at'],
+//
+//                    'id' => $data['id'],
+//                    'point' => $data['point'],
+//                    'HQ' => $data['HQ'],
+//                    'user_id' => $data['user_id'],
+//                    'agent_levels_id' => $data['agent_levels_id'],
+//                    'leader_id' => $data['leader_id'],
+//                    'referral_id' => $data['referral_id'],
+//                    'territory_id' => $data['territory_id'],
+//                    'state_id' => $data['state_id'],
+//                    'city' => $data['city'],
+//                    'district' => $data['district'],
+//                    'country' => $data['country'],
+//                    'paid' => $data['paid'],
+//                    'status' => $data['status'],
+//                    'member_no' => $data['member_no'],
+//                    'created_at' => $data['created_at'],
+//                    'updated_at' => $data['updated_at'],
+//                );
+//            }
+//        }
+//
+//
+//        $object1 = json_decode(json_encode($a), false);
+//        return AgentResources::collection($object1);
     }
 }

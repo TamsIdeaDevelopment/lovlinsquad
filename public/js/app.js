@@ -30397,10 +30397,6 @@ var render = function() {
                                   [_vm._v(_vm._s(_vm.details.name))]
                                 ),
                                 _vm._v(" "),
-                                _c("div", { staticClass: "text-muted mb-2" }, [
-                                  _vm._v("Alpha")
-                                ]),
-                                _vm._v(" "),
                                 _c(
                                   "span",
                                   {
@@ -34212,7 +34208,7 @@ var render = function() {
                           _vm._v("\n                                ( "),
                           _c("span", { staticClass: "text-danger" }, [
                             _vm._v(
-                              "* Please note that order will be automatically declined if the payment exceeds 30 minutes. "
+                              "* Please note that order will be automatically declined if the payment exceeds 24 Hours. "
                             )
                           ]),
                           _vm._v(" )\n                            ")
@@ -34583,7 +34579,7 @@ var render = function() {
                     _vm._v("\n                            ( "),
                     _c("span", { staticClass: "text-danger" }, [
                       _vm._v(
-                        "* Please note that order will be automatically declined if the payment exceeds 30 minutes. "
+                        "* Please note that order will be automatically declined if the payment exceeds 24 Hours. "
                       )
                     ]),
                     _vm._v(" )\n                        ")
