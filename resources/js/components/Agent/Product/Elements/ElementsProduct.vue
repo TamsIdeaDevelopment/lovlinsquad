@@ -54,14 +54,14 @@
                     <a v-if="Product.quantity < Product.minimum_order" class="btn btn-sm btn-danger">Out Of Stock</a>
                     <div v-if="$parent.$parent.data.country == 'Malaysia'">
                         <div v-if="$parent.$parent.data.east_west == 'Semenanjung'">
-                            <a v-if="Product.quantity >= Product.minimum_order" :href="'/cart-add-item/'+ $parent.$parent.data.id +'/'+ Product.product_id.id +'/' + Product.price + '/' + Product.minimum_order " class="btn btn-sm btn-primary">Add To Cart</a>
+                            <a v-if="Product.quantity >= Product.minimum_order" :href="'/cart-add-item/'+ $parent.$parent.data.id +'/'+ Product.product_id.id +'/' + Product.price + '/'+ Product.minimum_order + '/' + 1 " class="btn btn-sm btn-primary">Add To Cart</a>
                         </div>
                         <div v-if="$parent.$parent.data.east_west == 'SS'">
-                            <a v-if="Product.quantity >= Product.minimum_order" :href="'/cart-add-item/'+ $parent.$parent.data.id +'/'+ Product.product_id.id +'/' + Product.ss_price + '/' + Product.minimum_order " class="btn btn-sm btn-primary">Add To Cart</a>
+                            <a v-if="Product.quantity >= Product.minimum_order" :href="'/cart-add-item/'+ $parent.$parent.data.id +'/'+ Product.product_id.id +'/' + Product.ss_price + '/'+ Product.minimum_order + '/' + 1 " class="btn btn-sm btn-primary">Add To Cart</a>
                         </div>
                     </div>
                     <div v-if="$parent.$parent.data.country == 'Singapura' || $parent.$parent.data.country == 'Brunei'">
-                        <a v-if="Product.quantity >= Product.minimum_order" :href="'/cart-add-item/'+ $parent.$parent.data.id +'/'+ Product.product_id.id +'/' + Product.sg_brn_price + '/' + Product.minimum_order " class="btn btn-sm btn-primary">Add To Cart</a>
+                        <a v-if="Product.quantity >= Product.minimum_order" :href="'/cart-add-item/'+ $parent.$parent.data.id +'/'+ Product.product_id.id +'/' + Product.sg_brn_price + '/'+ Product.minimum_order + '/' + 1 " class="btn btn-sm btn-primary">Add To Cart</a>
                     </div>
                 </td>
             </tr>

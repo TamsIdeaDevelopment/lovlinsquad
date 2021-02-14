@@ -35,38 +35,38 @@
                                         <h5 class="text-success">{{Cart.name}}</h5>
                                     </div>
                                     <!--<div class="row">-->
-                                        <!--<div class="form-group">-->
-                                            <!--<table class="ml-n2 table table-borderless pb-0">-->
-                                                <!--<tr>-->
-                                                    <!--<td>-->
-                                                        <!--<span class="font-weight-bold text-muted text-primary-75">Price</span>-->
-                                                    <!--</td>-->
-                                                    <!--<td>:</td>-->
-                                                    <!--<td>-->
-                                                        <!--<span class="font-weight-bold text-primary-75">RM {{Cart.price}}</span>-->
-                                                    <!--</td>-->
-                                                <!--</tr>-->
-                                                <!--<tr class="">-->
-                                                    <!--<td class="">-->
-                                                        <!--<span class="font-weight-bold text-muted text-primary-75">Quantity</span>-->
-                                                    <!--</td>-->
-                                                    <!--<td class="">:</td>-->
-                                                    <!--<td>-->
+                                    <!--<div class="form-group">-->
+                                    <!--<table class="ml-n2 table table-borderless pb-0">-->
+                                    <!--<tr>-->
+                                    <!--<td>-->
+                                    <!--<span class="font-weight-bold text-muted text-primary-75">Price</span>-->
+                                    <!--</td>-->
+                                    <!--<td>:</td>-->
+                                    <!--<td>-->
+                                    <!--<span class="font-weight-bold text-primary-75">RM {{Cart.price}}</span>-->
+                                    <!--</td>-->
+                                    <!--</tr>-->
+                                    <!--<tr class="">-->
+                                    <!--<td class="">-->
+                                    <!--<span class="font-weight-bold text-muted text-primary-75">Quantity</span>-->
+                                    <!--</td>-->
+                                    <!--<td class="">:</td>-->
+                                    <!--<td>-->
 
-                                                        <!--<a @click="decreaseQuantity(Cart.rowId,Cart.qty,Cart.id)" class="btn btn-xs btn-light-success btn-icon mr-2">-->
-                                                            <!--<i class="ki ki-minus icon-xs"></i>-->
-                                                        <!--</a>-->
+                                    <!--<a @click="decreaseQuantity(Cart.rowId,Cart.qty,Cart.id)" class="btn btn-xs btn-light-success btn-icon mr-2">-->
+                                    <!--<i class="ki ki-minus icon-xs"></i>-->
+                                    <!--</a>-->
 
-                                                        <!--<span class="font-weight-bold mr-2 text-dark-75 font-size-lg">{{Cart.qty}}</span>-->
+                                    <!--<span class="font-weight-bold mr-2 text-dark-75 font-size-lg">{{Cart.qty}}</span>-->
 
-                                                        <!--<a @click="addQuantity(Cart.rowId,Cart.qty,Cart.id)" class="btn btn-xs btn-light-success btn-icon">-->
-                                                            <!--<i class="ki ki-plus icon-xs"></i>-->
-                                                        <!--</a>-->
-                                                        <!--&lt;!&ndash;<input @click="addQuantity(Cart.rowId,Cart.qty,Cart.id)" class="form-control" type="number" v-model="Cart.qty"/>&ndash;&gt;-->
-                                                    <!--</td>-->
-                                                <!--</tr>-->
-                                            <!--</table>-->
-                                        <!--</div>-->
+                                    <!--<a @click="addQuantity(Cart.rowId,Cart.qty,Cart.id)" class="btn btn-xs btn-light-success btn-icon">-->
+                                    <!--<i class="ki ki-plus icon-xs"></i>-->
+                                    <!--</a>-->
+                                    <!--&lt;!&ndash;<input @click="addQuantity(Cart.rowId,Cart.qty,Cart.id)" class="form-control" type="number" v-model="Cart.qty"/>&ndash;&gt;-->
+                                    <!--</td>-->
+                                    <!--</tr>-->
+                                    <!--</table>-->
+                                    <!--</div>-->
                                     <!--</div>-->
                                     <div class="row">
                                         <div class="form-group">
@@ -81,16 +81,32 @@
                                             <!--<span class="font-weight-bold text-primary-75">RM {{Cart.price}}</span>-->
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="form-group">
-                                            <a v-if="Cart.qty" @click="decreaseQuantity(Cart.rowId,Cart.qty,Cart.id)" class="btn btn-xs btn-light-success btn-icon mr-2">
-                                                <i class="ki ki-minus icon-xs"></i>
-                                            </a>
-                                            <span class="font-weight-bold mr-2 text-dark-75 font-size-lg">{{Cart.qty}}</span>
-                                            <a @click="addQuantity(Cart.rowId,Cart.qty,Cart.id)" class="btn btn-xs btn-light-success btn-icon">
-                                                <i class="ki ki-plus icon-xs"></i>
-                                            </a>
+                                    <div class="row mt-n5">
+                                        <div class="col-12 ml-n3">
+                                            <input type="number" class="form-control" style="width: 100%" v-model="Cart.qty" @change="changeQuantity(Cart.rowId,Cart.qty,Cart.id,Cart.options.stock,Cart.name)">
                                         </div>
+                                        <!--<div class="col-3 d-flex justify-content-end">-->
+                                        <!--<a v-if="Cart.qty" @click="decreaseQuantity(Cart.rowId,Cart.qty,Cart.id)" class="btn btn-xs btn-light-success btn-icon mr-2 mt-1">-->
+                                        <!--<i class="ki ki-minus icon-xs"></i>-->
+                                        <!--</a>-->
+                                        <!--</div>-->
+                                        <!--<div class="col-6">-->
+                                        <!--<input type="number" class="form-control" style="width: 100%" v-model="Cart.qty" @change="changeQuantity(Cart.rowId,Cart.qty,Cart.id)">-->
+                                        <!--</div>-->
+                                        <!--<div class="col-3 d-flex justify-content-start">-->
+                                        <!--<a @click="addQuantity(Cart.rowId,Cart.qty,Cart.id)" class="btn btn-xs btn-light-success btn-icon">-->
+                                        <!--<i class="ki ki-plus icon-xs"></i>-->
+                                        <!--</a>-->
+                                        <!--</div>-->
+                                        <!--<div class="form-group">-->
+                                        <!--<a v-if="Cart.qty" @click="decreaseQuantity(Cart.rowId,Cart.qty,Cart.id)" class="btn btn-xs btn-light-success btn-icon mr-2">-->
+                                        <!--<i class="ki ki-minus icon-xs"></i>-->
+                                        <!--</a>-->
+                                        <!--<span class="font-weight-bold mr-2 text-dark-75 font-size-lg">{{Cart.qty}}</span>-->
+                                        <!--<a @click="addQuantity(Cart.rowId,Cart.qty,Cart.id)" class="btn btn-xs btn-light-success btn-icon">-->
+                                        <!--<i class="ki ki-plus icon-xs"></i>-->
+                                        <!--</a>-->
+                                        <!--</div>-->
                                     </div>
                                 </div>
                             </div>
@@ -210,11 +226,36 @@
                         EventBus.$emit('fetchProduct');
                     })
             },
-            addQuantity(rowId,quantity,productId)
+            changeQuantity(rowId,quantity,productId,stock,product_name)
             {
-                var quantity = parseInt(quantity);
-                quantity = quantity +1;
-                    var url = '/api/v1/cart/'+ this.data.id+'/'+ rowId + '/' +  quantity +'/add-quantity', method = 'post';
+                if(quantity > stock)
+                {
+                    toastr.options = {
+                        "closeButton": true,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": false,
+                        "positionClass": "toast-top-right",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "5000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    };
+                    toastr.error("Please change the quantity", product_name +' \nQuantity Exceeds Stock');
+                    this.fetchCart();
+
+                }
+                else
+                {
+
+                    var quantity = parseInt(quantity);
+                    var url = '/api/v1/cart/'+ this.data.id +'/'+ rowId + '/' +  quantity +'/add-quantity', method = 'post';
 
                     fetch(url, {
                         method: method,
@@ -225,11 +266,50 @@
                     }).then(response => response.json())
                         .then(response => {
                             this.fetchCart();
-
                             EventBus.$emit('updateElementsCart');
                             EventBus.$emit('updateTotalCart');
                             EventBus.$emit('fetchProduct');
                         })
+
+                }
+//                var quantity = parseInt(quantity);
+//                var url = '/api/v1/cart/'+ this.data.id +'/'+ rowId + '/' +  quantity +'/add-quantity', method = 'post';
+//
+//                fetch(url, {
+//                    method: method,
+//                    body: JSON.stringify(),
+//                    headers: {
+//                        'content-type': 'application/json'
+//                    }
+//                }).then(response => response.json())
+//                    .then(response => {
+//                        this.fetchCart();
+//                        EventBus.$emit('updateElementsCart');
+//                        EventBus.$emit('updateTotalCart');
+//                        EventBus.$emit('fetchProduct');
+//                    })
+
+            },
+            addQuantity(rowId,quantity,productId)
+            {
+                var quantity = parseInt(quantity);
+                quantity = quantity +1;
+                var url = '/api/v1/cart/'+ this.data.id+'/'+ rowId + '/' +  quantity +'/add-quantity', method = 'post';
+
+                fetch(url, {
+                    method: method,
+                    body: JSON.stringify(),
+                    headers: {
+                        'content-type': 'application/json'
+                    }
+                }).then(response => response.json())
+                    .then(response => {
+                        this.fetchCart();
+
+                        EventBus.$emit('updateElementsCart');
+                        EventBus.$emit('updateTotalCart');
+                        EventBus.$emit('fetchProduct');
+                    })
 
             },
 

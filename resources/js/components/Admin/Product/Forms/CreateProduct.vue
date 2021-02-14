@@ -42,8 +42,36 @@
             <!--</div>-->
             <div class="col-xl-12">
                 <div class="form-group">
-                    <label>Retail</label>
+                    <label>Semenanjung Retail</label>
                     <input type="text" class="form-control" v-model="$parent.Products.retail_price" placeholder="RM"/>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <!--<div class="col-xl-6">-->
+            <!--<div class="form-group">-->
+            <!--<label>Stock Alert</label>-->
+            <!--<input type="text" class="form-control" name="address2" placeholder="Stock Alert"/>-->
+            <!--</div>-->
+            <!--</div>-->
+            <div class="col-xl-12">
+                <div class="form-group">
+                    <label>Sabah & Sarawak Retail</label>
+                    <input type="text" class="form-control" v-model="$parent.Products.ss_retail_price" placeholder="RM"/>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <!--<div class="col-xl-6">-->
+            <!--<div class="form-group">-->
+            <!--<label>Stock Alert</label>-->
+            <!--<input type="text" class="form-control" name="address2" placeholder="Stock Alert"/>-->
+            <!--</div>-->
+            <!--</div>-->
+            <div class="col-xl-12">
+                <div class="form-group">
+                    <label>Singapura & Brunei Retail</label>
+                    <input type="text" class="form-control" v-model="$parent.Products.sg_brn_retail_price" placeholder="RM"/>
                 </div>
             </div>
         </div>

@@ -2,13 +2,13 @@
     <div class="card card-custom">
         <div class="card-header flex-wrap py-5">
             <div class="card-title">
-                <h3 class="card-label">Product
-                    <span class="d-block text-muted pt-2 font-size-sm">List of Products</span>
+                <h3 class="card-label">List Customer Order
+                    <span class="d-block text-muted pt-2 font-size-sm">List of Customer Order</span>
                 </h3>
             </div>
         </div>
         <div class="card-body">
-            <product-elements :data="this.Products"></product-elements>
+            <agent-customer-elements :data="this.Orders"></agent-customer-elements>
         </div>
     </div>
 </template>
@@ -16,41 +16,37 @@
     export default {
         data() {
             return {
-                Products:[],
-                dataTable:null,
+                Orders:[],
+                AgentDetails:[],
             }
         },
         created(){
-            this.fetchProduct();
+            this.fetchCustomerOrder();
         },
-        mounted() {
-            VueEvent.$on('fetchProduct', () => {
-                this.fetchProduct();
-            });
-        },
+        mounted() {},
 
         methods : {
-            fetchProduct(){
-                fetch('/api/v1/product/Lists/products').then(response => response.json())
+            fetchCustomerOrder(){
+                fetch('/api/v1/Customer/Lists/'+ this.$parent.data.id + '/agent-list-customer-order').then(response => response.json())
                     .then(response => {
-                        this.Products = response.data;
-                        console.log(this.Products);
-                        $('#kt_datatable').DataTable().destroy();
+                        this.Orders = response.data;
+                        $('#table-customer-order').DataTable().destroy();
                         this.$nextTick(() =>
                         {
-                            $('#kt_datatable').DataTable(
+                            $('#table-customer-order').DataTable(
                                 {
+                                    scrollX: false,
+                                    scrollCollapse: true,
                                     responsive: true,
                                     pagingType: 'full_numbers',
                                     columnDefs: [
                                         { "width": "50px", "targets": 0 },
-                                        { "width": "450px", "targets": 1 },
-                                        { "width": "50px", "targets": 2 },
-                                        { "width": "50px", "targets": 3 },
-                                        { "width": "100px", "targets": 4 },
+                                        { "width": "50px", "targets": 1 },
+                                        { "width": "100px", "targets": 3 },
+                                        { "width": "50px", "targets": 4 },
                                         {
                                             //targets: 3,
-                                            width: '150px',
+                                            width: '50px',
                                             title: 'Actions',
                                             orderable: false,
                                             render: function(data, type, full, meta) {

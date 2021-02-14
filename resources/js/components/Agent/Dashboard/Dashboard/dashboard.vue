@@ -1,16 +1,28 @@
 <template>
     <div class="container-fluid">
         <div class="row p-0 d-flex"  v-if="AgentDetails.status == 1">
-            <div class="col-lg-12">
+            <div class="col-lg-2">
                 <div class="alert alert-shadow alert-white p-4" role="alert">
                     <div class="">
                         <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col-lg-12">
+                                <label class="h6">Level</label>
+                                <h1 class="text-success">{{this.AgentProfile}}</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-10">
+                <div class="alert alert-shadow alert-white p-4" role="alert">
+                    <div class="">
+                        <div class="row">
+                            <div class="col-lg-10">
                                 <label class="h6">Referral Link</label>
                                 <input type="text" class="form-control" :value="'https://lovlinsquad.com/invite/LN'+ (String('00000' + this.AgentDetails.member_no).slice(-5))" id="myInput">
                             </div>
-                            <div class="col-lg-6">
-                                <button class="btn btn-primary ml-5 mt-7" @click="copyLink">Copy Link</button>
+                            <div class="col-lg-2">
+                                <button class="btn btn-primary ml-5 mt-7" @click="copyLink">Copy</button>
                             </div>
                         </div>
                     </div>
@@ -34,6 +46,7 @@
             return {
                 details: this.data,
                 AgentDetails:{},
+                AgentProfile:{},
                 image_source: 'storage/ProfilePicture/',
 
             }
@@ -41,6 +54,7 @@
         mounted () {},
         created(){
             this.fetchAgentDetails();
+            this.fetchAgentProfile();
         },
         methods:
             {
@@ -48,7 +62,13 @@
                     fetch('/api/v1/team/Lists/' + this.data.id +'/agent-details').then(response => response.json())
                         .then(response => {
                             this.AgentDetails = response;
-                            console.log(this.AgentDetails.member_no)
+                        })
+                        .catch(error => console.log(error))
+                },
+                fetchAgentProfile(){
+                    fetch('/api/v1/team/Lists/' + this.data.id +'/agent-profile').then(response => response.json())
+                        .then(response => {
+                            this.AgentProfile = response.data.agent_levels_id.name;
                         })
                         .catch(error => console.log(error))
                 },

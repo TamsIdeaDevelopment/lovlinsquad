@@ -8,8 +8,7 @@
             </div>
             <div class="card-body">
                 <h6 class="font-weight-bolder  mt-n5">Choose Payment Method</h6>
-                {{$parent.data.country}}
-                <div v-show="$parent.data.country == 'Singapura'">
+                <div v-show="$parent.data.country == 'Singapura' || $parent.data.country == 'Brunei'">
                     <div class="form-group">
                         <div class="row">
                             <div class="col-lg-4 col-xxl-2 justify-content-center">

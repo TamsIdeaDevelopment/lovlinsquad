@@ -107,6 +107,8 @@
                 formData.append("weight", this.Products.weight);
                 formData.append("stock", this.Products.stock);
                 formData.append("retail_price", this.Products.retail_price);
+                formData.append("ss_retail_price", this.Products.ss_retail_price);
+                formData.append("sg_brn_retail_price", this.Products.sg_brn_retail_price);
                 formData.append("featured_image", this.Products.featured_image);
 
                 var url = '/api/v1/product/Creates/create-product', method = 'post';

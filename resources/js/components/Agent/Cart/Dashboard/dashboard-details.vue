@@ -16,18 +16,27 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="wizard-step" data-wizard-type="step">
+                                    <div class="wizard-step" data-wizard-type="step" v-if="Count >= TotalMOQ" >
                                         <div class="wizard-wrapper">
                                             <div class="wizard-number">2</div>
                                             <div class="wizard-label">
                                                 <div class="wizard-title">Delivery Address</div>
                                                 <div class="wizard-desc">Setup Your Address</div>
                                                 <span class="card-label font-weight-bolder text-danger" v-if="('all' in errors)">{{errors['all']}}</span>
-
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="wizard-step" data-wizard-type="step">
+                                    <div class="wizard-step" v-if="TotalMOQ > Count" >
+                                        <div class="wizard-wrapper">
+                                            <div class="wizard-number">2</div>
+                                            <div class="wizard-label">
+                                                <div class="wizard-title text-danger">Complete your cart</div>
+                                                <div class="wizard-desc">Setup Your Address</div>
+                                                <span class="card-label font-weight-bolder text-danger" v-if="('all' in errors)">{{errors['all']}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="wizard-step" data-wizard-type="step"  v-if="Count >= TotalMOQ" >
                                         <div class="wizard-wrapper">
                                             <div class="wizard-number">3</div>
                                             <div class="wizard-label">
@@ -36,11 +45,29 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="wizard-step" data-wizard-type="step">
+                                    <div class="wizard-step" v-if="TotalMOQ > Count">
+                                        <div class="wizard-wrapper">
+                                            <div class="wizard-number">3</div>
+                                            <div class="wizard-label">
+                                                <div class="wizard-title text-danger">Complete your cart</div>
+                                                <div class="wizard-desc">Choose Payment Method</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="wizard-step" data-wizard-type="step"   v-if="Count >= TotalMOQ" >
                                         <div class="wizard-wrapper">
                                             <div class="wizard-number">4</div>
                                             <div class="wizard-label">
                                                 <div class="wizard-title">Completed</div>
+                                                <div class="wizard-desc">Review and Submit</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="wizard-step" v-if="TotalMOQ > Count">
+                                        <div class="wizard-wrapper">
+                                            <div class="wizard-number">4</div>
+                                            <div class="wizard-label">
+                                                <div class="wizard-title text-danger">Complete your cart</div>
                                                 <div class="wizard-desc">Review and Submit</div>
                                             </div>
                                         </div>
@@ -61,7 +88,8 @@
                                             </div>
                                             <div>
                                                 <button type="submit" class="btn btn-success font-weight-bolder text-uppercase px-9 py-4" data-wizard-state="action-submit" data-wizard-type="action-submit">Order</button>
-                                                <button type="button" class="btn btn-primary font-weight-bolder text-uppercase px-9 py-4" data-wizard-type="action-next">Next</button>
+                                                <button type="button" v-show="(Count >= TotalMOQ) && (CartStatus === true)"  class="btn btn-primary font-weight-bolder text-uppercase px-9 py-4" data-wizard-type="action-next">Next</button>
+                                                <button type="button" v-show="(TotalMOQ > Count) && (CartStatus === false)" disabled class="btn btn-secondary font-weight-bolder text-uppercase px-9 py-4" data-wizard-type="action-next">Next</button>
                                             </div>
                                         </div>
                                     </form>
@@ -80,6 +108,15 @@
         props: ['data'],
         data() {
             return {
+                Alpha:3000,
+                Leader:1000,
+                Zombie:500,
+                Stokis:150,
+                MiniStokis:60,
+                MonsterAgent:20,
+                Agent:10,
+                TotalMOQ:0,
+                TotalItems:3000,
                 errors:[],
                 Carts: [],
                 Count: [],
@@ -120,6 +157,7 @@
                 paid_at : '',
                 total_paid : '',
                 SellerDetails:[],
+                CartStatus: false,
             }
         },
         mounted() {
@@ -139,6 +177,38 @@
                         this.AgentDetails = response.data;
                         this.BillingDetails = response.data.user_id;
                         this.seller_id = response.data.leader_id.user_id;
+
+                        if(this.AgentDetails.agent_levels_id.id == 2){
+                            this.TotalMOQ = this.Alpha;
+                        }
+                        if(this.AgentDetails.agent_levels_id.id == 3){
+                            this.TotalMOQ = this.Leader;
+                        }
+                        if(this.AgentDetails.agent_levels_id.id == 4){
+                            this.TotalMOQ = this.Zombie;
+                        }
+                        if(this.AgentDetails.agent_levels_id.id == 5){
+                            this.TotalMOQ = this.Stokis;
+                        }
+                        if(this.AgentDetails.agent_levels_id.id == 6){
+                            this.TotalMOQ = this.MiniStokis;
+                        }
+                        if(this.AgentDetails.agent_levels_id.id == 7){
+                            this.TotalMOQ = this.MonsterAgent;
+                        }
+                        if(this.AgentDetails.agent_levels_id.id == 8){
+                            this.TotalMOQ = this.Agent;
+                        }
+
+                        if(this.TotalItems >= this.TotalMOQ)
+                        {
+                            console.log('yes')
+                        }
+                        if(this.TotalMOQ >  this.TotalItems )
+                        {
+                            console.log('no')
+                        }
+
                         this.fetchSellerDetails();
                     })
                     .catch(error => console.log(error))
@@ -148,7 +218,6 @@
                     .then(response => {
                         this.IsSellerHQ = response.data.HQ;
                         this.SellerDetails = response.data.user_id;
-                        console.log(this.SellerDetails);
                     })
                     .catch(error => console.log(error))
             },
@@ -263,39 +332,6 @@
                         currentObj.output = error;
                     });
 
-//                var url = '/api/v1/orders/HQ/Creates/create-order', method = 'post';
-//
-//                fetch(url, {
-//                    method: method,
-//                    body: JSON.stringify(this.Orders),
-//                    headers: {
-//                        'content-type': 'application/json'
-//                    }
-//                }).then(async response => {
-////                    const data = await response.json();
-////                    window.location = data.redirect;
-////                    toastr.options = {
-////                        "closeButton": true,
-////                        "debug": false,
-////                        "newestOnTop": false,
-////                        "progressBar": false,
-////                        "positionClass": "toast-top-right",
-////                        "preventDuplicates": false,
-////                        "onclick": null,
-////                        "showDuration": "300",
-////                        "hideDuration": "1000",
-////                        "timeOut": "5000",
-////                        "extendedTimeOut": "1000",
-////                        "showEasing": "swing",
-////                        "hideEasing": "linear",
-////                        "showMethod": "fadeIn",
-////                        "hideMethod": "fadeOut"
-////                    };
-////
-////                    toastr.success("Successfully Place The Order", "Order Created");
-////                    if (!response.ok) {
-////                    }
-//                })
             }
         }
 

@@ -49,13 +49,39 @@
                                             <div class="row">
                                                 <div class="col-xl-12">
                                                     <div class="form-group">
-                                                        <label>Retail</label>
+                                                        <label>Semenanjung Retail</label>
                                                         <div class="row" v-if="('retail_price' in errors)">
                                                             <div class="col">
                                                                 <label class="text-danger">{{errors['retail_price']}}</label>
                                                             </div>
                                                         </div>
                                                         <input type="text" class="form-control" v-model="$parent.Products.retail_price" placeholder="RM"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xl-12">
+                                                    <div class="form-group">
+                                                        <label>Sabah & Sarawak Retail</label>
+                                                        <div class="row" v-if="('ss_retail_price' in errors)">
+                                                            <div class="col">
+                                                                <label class="text-danger">{{errors['ss_retail_price']}}</label>
+                                                            </div>
+                                                        </div>
+                                                        <input type="text" class="form-control" v-model="$parent.Products.ss_retail_price" placeholder="RM"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xl-12">
+                                                    <div class="form-group">
+                                                        <label>Singapura & Brunei Retail</label>
+                                                        <div class="row" v-if="('sg_brn_retail_price' in errors)">
+                                                            <div class="col">
+                                                                <label class="text-danger">{{errors['sg_brn_retail_price']}}</label>
+                                                            </div>
+                                                        </div>
+                                                        <input type="text" class="form-control" v-model="$parent.Products.sg_brn_retail_price" placeholder="RM"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -120,7 +146,7 @@
             },
             UpdateProduct() {
                 this.errors = [];
-                if((this.$parent.Products.name !== '') && (this.$parent.Products.stock !== '') && (this.$parent.Products.retail_price !== ''))
+                if((this.$parent.Products.name !== '') && (this.$parent.Products.stock !== '') && (this.$parent.Products.retail_price !== '') && (this.$parent.Products.ss_retail_price !== '') && (this.$parent.Products.sg_brn_retail_price !== ''))
                 {
                     let currentObj = this;
                     const config = {
@@ -134,6 +160,8 @@
                     formData.append("weight", this.$parent.Products.weight);
                     formData.append("stock", this.$parent.Products.stock);
                     formData.append("retail_price", this.$parent.Products.retail_price);
+                    formData.append("ss_retail_price", this.$parent.Products.ss_retail_price);
+                    formData.append("sg_brn_retail_price", this.$parent.Products.sg_brn_retail_price);
                     formData.append("featured_image", this.$parent.Products.featured_image);
 
                     var url = '/api/v1/product/Updates/'+ this.$parent.data +'/products', method = 'post';
@@ -179,6 +207,14 @@
                 if(!this.$parent.Products.retail_price)
                 {
                     this.errors['retail_price'] = "Please enter the retail price"
+                }
+                if(!this.$parent.Products.ss_retail_price)
+                {
+                    this.errors['ss_retail_price'] = "Please enter the Sabah & Sarawak retail price"
+                }
+                if(!this.$parent.Products.sg_brn_retail_price)
+                {
+                    this.errors['sg_brn_retail_price'] = "Please enter the Singapura & Brunei retail price"
                 }
             },
 
