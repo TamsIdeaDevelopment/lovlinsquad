@@ -9,14 +9,13 @@
 namespace App\Http\Controllers\Cart;
 
 
-use App\CartItem;
 use App\Http\Controllers\Team\Lists\ListTeam;
 use App\Product;
 use App\Stock_agent;
 use Cart;
 
 
-class CartController
+class CartControllerTesting
 {
     /** @var  Product */
     private $product;
@@ -55,6 +54,8 @@ class CartController
     }
 
 
+//{user_id}/{product_id}/{price}/{minimum_order}/{stock}/{quantity}
+
     public function CartAddItems($user_id,$product_id, $price, $minimum_order, $quantity)
     {
         $data = $this->product->findOrFail($product_id);
@@ -64,14 +65,12 @@ class CartController
         $leader_id = $agent_detail['leader_id']['user_id'];
 
         $stock = 0;
-        $HQ = 0;
 
         if($agent_detail['leader_id']['HQ'] == 1)
         {
            $data->stock = $data->stock -$quantity;
            $data->save();
            $stock = $data->stock;
-           $HQ = 1;
         }
         if($agent_detail['leader_id']['HQ'] == 0)
         {
@@ -81,21 +80,40 @@ class CartController
 
             $stock_leader->save();
             $stock = $stock_leader->quantity;
-            $HQ = 0;
 
         }
 
-        $cart = Cart::add($data->id, $data->name, $quantity, $price, $data->weight, ['size' => $data->featured_image , 'stock' => $stock, 'MOQ' => $minimum_order]);
-        $cart_items = CartItem::create([
-            'rowId' =>  $cart->rowId,
-            'product_id' =>  $product_id,
-            'seller_id' =>  $leader_id,
-            'HQ' =>  $HQ,
-            'quantity' =>  $quantity,
-            'status' =>  0,
-        ]);
+        Cart::add($data->id, $data->name, $quantity, $price, $data->weight, ['size' => $data->featured_image , 'stock' => $stock, 'MOQ' => $minimum_order]);
         return redirect()->back();
+        //return redirect('/cart-details');
     }
+
+//    public function CartAddItems($user_id,$product_id, $price, $minimum_order)
+//    {
+//        $data = $this->product->findOrFail($product_id);
+//
+//        $agent_detail = $this->agent_details->agentInformation($user_id);
+//        $agent_detail = json_decode(json_encode($agent_detail), true);
+//        $leader_id = $agent_detail['leader_id']['user_id'];
+//
+//        if($agent_detail['leader_id']['HQ'] == 1)
+//        {
+//            $data->stock = $data->stock -$minimum_order;
+//            $data->save();
+//        }
+//        if($agent_detail['leader_id']['HQ'] == 0)
+//        {
+//            $stock_leader = $this->stock_leader->where([['user_id',$leader_id],['product_id',$product_id]])->first();
+//
+//            $stock_leader->quantity = $stock_leader->quantity-$minimum_order;
+//
+//            $stock_leader->save();
+//        }
+//
+//        Cart::add($data->id, $data->name, $minimum_order, $price, $data->weight, ['size' => $data->featured_image]);
+//        return redirect()->back();
+//        //return redirect('/cart-details');
+//    }
 
     public function RemoveItem($user_id,$rowId)
     {
@@ -117,8 +135,7 @@ class CartController
             $stock_leader->save();
         }
 
-        $cart_items = CartItem::where('rowId', $cart->rowId)->first();
-        $cart_items->delete();
+
 
         Cart::remove($rowId);
         $data = Cart::content();
@@ -185,10 +202,6 @@ class CartController
             $stock_leader->save();
         }
 
-        $cart_items = CartItem::where('rowId', $cart->rowId)->first();
-        $cart_items->quantity = $quantity;
-        $cart_items->save();
-
         Cart::update($rowId, $quantity);
         $data = Cart::content();
         return $data;
@@ -217,10 +230,6 @@ class CartController
 
             $stock_leader->save();
         }
-
-        $cart_items = CartItem::where('rowId', $cart->rowId)->first();
-        $cart_items->quantity = $quantity;
-        $cart_items->save();
 
         Cart::update($rowId, $quantity);
         $data = Cart::content();
