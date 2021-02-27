@@ -122,7 +122,7 @@ class RegisterController extends Controller
 //                'referral_id' => $data['leader'],
                 'territory_id' => $data['territory'],
                 'state_id' => $data['state'],
-                'paid' => '1',
+                'paid' => '0',
                 'status' => '0',
                 'city' => $data['city'],
             ]);
@@ -135,7 +135,7 @@ class RegisterController extends Controller
                 'leader_id' => $data['leader'],
                 'territory_id' => $data['territory'],
                 'state_id' => $data['state'],
-                'paid' => '1',
+                'paid' => '0',
                 'status' => '0',
                 'city' => $data['city'],
             ]);
