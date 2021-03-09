@@ -211,7 +211,7 @@
                                     <tbody>
                                     <tr class="font-weight-bolder">
                                         <td>TOYYIBPAY</td>
-                                        <td><a  target="_blank" :href="'https://dev.toyyibpay.com/'+ Order.billcode">{{Order.billcode}}</a></td>
+                                        <td><a  target="_blank" :href="'https://toyyibpay.com/'+ Order.billcode">{{Order.billcode}}</a></td>
                                         <td>
                                             <span v-if="Order.status =='2'" class="label label-warning label-pill label-inline mr-2">PROCESSING</span>
                                             <span v-if="Order.status =='1'" class="label label-success label-pill label-inline mr-2">SUCCESS</span>
@@ -220,7 +220,7 @@
                                         <td>{{Order.ref_no}}</td>
                                         <td class="text-primary font-size-h3 font-weight-boldest text-right">RM {{Order.total_paid}}</td>
                                         <!--<td class="text-primary font-size-h3 font-weight-boldest text-right" v-if="Order.status =='2' && (Order.buyer_id.id == user)"><a class="btn btn-success" :href="'https://dev.toyyibpay.com/'+ Order.billcode">Pay</a></td>-->
-                                        <td class="text-primary font-size-h3 font-weight-boldest text-right" v-if="Order.paid =='0'  && (Order.buyer_id.id == user)"><a class="btn btn-success" :href="'https://dev.toyyibpay.com/'+ Order.billcode">Pay</a></td>
+                                        <td class="text-primary font-size-h3 font-weight-boldest text-right" v-if="Order.paid =='0'  && (Order.buyer_id.id == user)"><a class="btn btn-success" :href="'https://toyyibpay.com/'+ Order.billcode">Pay</a></td>
                                         <td class="text-primary font-size-h3 font-weight-boldest text-right" v-if="Order.status =='2'  && Order.seller_id.id == user"><a class="btn btn-primary" @click="ApproveOrder">Approve</a></td>
                                     </tr>
                                     </tbody>

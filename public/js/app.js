@@ -41360,7 +41360,7 @@ var render = function() {
                                       attrs: {
                                         target: "_blank",
                                         href:
-                                          "https://dev.toyyibpay.com/" +
+                                          "https://toyyibpay.com/" +
                                           _vm.Order.billcode
                                       }
                                     },
@@ -41429,7 +41429,7 @@ var render = function() {
                                             staticClass: "btn btn-success",
                                             attrs: {
                                               href:
-                                                "https://dev.toyyibpay.com/" +
+                                                "https://toyyibpay.com/" +
                                                 _vm.Order.billcode
                                             }
                                           },
