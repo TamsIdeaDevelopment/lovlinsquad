@@ -25,12 +25,10 @@
                                                         <div class="card card-custom gutter-b">
                                                             <div class="card-header  ribbon ribbon-clip ribbon-left">
                                                                 <div class="ribbon-target" style="top: 15px; height: 45px;">
-                                                                    <span class="ribbon-inner bg-success"></span>
-                                                                    <i class="flaticon2-open-text-book text-white"></i>
+                                                                    <span class="ribbon-inner bg-danger"></span>
+                                                                    <i class="la la-trash-o text-white" @click="openDeleteRecord(Classroom)"></i>
                                                                 </div>
                                                                 <a class="nav-link navi-link py-4" :id="Classroom.id" data-toggle="tab" href="javascript:;"  @click="openTab(Classroom)" aria-controls="change-password">
-                                                                    <span class="nav-icon">
-                                                                    </span>
                                                                     <span class="nav-text h6">{{Classroom.name}}</span>
                                                                 </a>
                                                             </div>
@@ -103,6 +101,7 @@
                                                 </div>
                                                 <admin-classroom-elements v-if="tabActive && !tabCreateActive" :data="Classroom"></admin-classroom-elements>
                                                 <admin-classroom-form v-if="!tabActive && tabCreateActive"></admin-classroom-form>
+                                                <admin-classroom-delete :data="this.Classroom"></admin-classroom-delete>
                                             </div>
                                         </div>
                                     </div>
@@ -143,7 +142,7 @@
                 this.tabCreateActive = !this.tabCreateActive;
             },
             openTab(data) {
-                                this.tabCreateActive = false;
+                this.tabCreateActive = false;
                 this.tabActive =true;
                 this.Classroom = [];
                 this.Classroom = data;
@@ -154,6 +153,10 @@
                         this.Classrooms = response.data;
                     })
                     .catch(error => console.log(error))
+            },
+            openDeleteRecord(data){
+                $(".deleteClassroom").modal('show');
+                this.Classroom = data;
             },
         }
     }

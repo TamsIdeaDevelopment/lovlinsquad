@@ -2036,7 +2036,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['data'],
   data: function data() {
@@ -2079,6 +2078,10 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         return console.log(error);
       });
+    },
+    openDeleteRecord: function openDeleteRecord(data) {
+      $(".deleteClassroom").modal('show');
+      this.Classroom = data;
     }
   }
 });
@@ -2309,6 +2312,13 @@ __webpack_require__.r(__webpack_exports__);
       file5: ''
     };
   },
+  mounted: function mounted() {
+    var _this = this;
+
+    VueEvent.$on('updateTable', function () {
+      _this.updateTable();
+    });
+  },
   watch: {
     'data': function data() {
       this.Classroom = this.data;
@@ -2416,6 +2426,109 @@ __webpack_require__.r(__webpack_exports__);
       if (!this.Classroom.info_description) {
         this.errors['info_description'] = "Please enter the information description";
       }
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/Classroom/Forms/DeleteClassroom.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Admin/Classroom/Forms/DeleteClassroom.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['data'],
+  data: function data() {
+    return {
+      Classroom: []
+    };
+  },
+  watch: {
+    'data': function data() {
+      this.Classroom = this.data;
+    }
+  },
+  created: function created() {},
+  mounted: function mounted() {},
+  methods: {
+    deleteClassroom: function deleteClassroom() {
+      var url = '/api/v1/Classroom/HQ/Deletes/' + this.Classroom.id + '/delete-classroom',
+          method = 'post';
+      fetch(url, {
+        method: method,
+        body: JSON.stringify(),
+        headers: {
+          'content-type': 'application/json'
+        }
+      }).then(function (response) {
+        $('.deleteClassroom').click();
+        VueEvent.$emit('FetchClassroom');
+        toastr.options = {
+          "closeButton": true,
+          "debug": false,
+          "newestOnTop": false,
+          "progressBar": false,
+          "positionClass": "toast-top-right",
+          "preventDuplicates": false,
+          "onclick": null,
+          "showDuration": "300",
+          "hideDuration": "1000",
+          "timeOut": "5000",
+          "extendedTimeOut": "1000",
+          "showEasing": "swing",
+          "hideEasing": "linear",
+          "showMethod": "fadeIn",
+          "hideMethod": "fadeOut"
+        };
+        toastr.success("Successfully Delete Classroom", "Classroom Deleted");
+      });
     }
   }
 });
@@ -3179,6 +3292,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['data'],
   data: function data() {
@@ -3322,6 +3441,12 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -19494,7 +19619,34 @@ var render = function() {
                                             "card-header  ribbon ribbon-clip ribbon-left"
                                         },
                                         [
-                                          _vm._m(0, true),
+                                          _c(
+                                            "div",
+                                            {
+                                              staticClass: "ribbon-target",
+                                              staticStyle: {
+                                                top: "15px",
+                                                height: "45px"
+                                              }
+                                            },
+                                            [
+                                              _c("span", {
+                                                staticClass:
+                                                  "ribbon-inner bg-danger"
+                                              }),
+                                              _vm._v(" "),
+                                              _c("i", {
+                                                staticClass:
+                                                  "la la-trash-o text-white",
+                                                on: {
+                                                  click: function($event) {
+                                                    return _vm.openDeleteRecord(
+                                                      Classroom
+                                                    )
+                                                  }
+                                                }
+                                              })
+                                            ]
+                                          ),
                                           _vm._v(" "),
                                           _c(
                                             "a",
@@ -19515,10 +19667,6 @@ var render = function() {
                                               }
                                             },
                                             [
-                                              _c("span", {
-                                                staticClass: "nav-icon"
-                                              }),
-                                              _vm._v(" "),
                                               _c(
                                                 "span",
                                                 { staticClass: "nav-text h6" },
@@ -19553,7 +19701,7 @@ var render = function() {
                         [
                           !_vm.tabActive && !_vm.tabCreateActive
                             ? _c("div", [
-                                _vm._m(1),
+                                _vm._m(0),
                                 _vm._v(" "),
                                 _c("div", { staticClass: "row" }, [
                                   _c("div", { staticClass: "col-lg-12" }, [
@@ -19586,7 +19734,7 @@ var render = function() {
                                                             "carousel-item active"
                                                         },
                                                         [
-                                                          _vm._m(2),
+                                                          _vm._m(1),
                                                           _vm._v(" "),
                                                           _c("div", {}, [
                                                             _c(
@@ -19642,7 +19790,11 @@ var render = function() {
                           _vm._v(" "),
                           !_vm.tabActive && _vm.tabCreateActive
                             ? _c("admin-classroom-form")
-                            : _vm._e()
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _c("admin-classroom-delete", {
+                            attrs: { data: this.Classroom }
+                          })
                         ],
                         1
                       )
@@ -19658,23 +19810,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "ribbon-target",
-        staticStyle: { top: "15px", height: "45px" }
-      },
-      [
-        _c("span", { staticClass: "ribbon-inner bg-success" }),
-        _vm._v(" "),
-        _c("i", { staticClass: "flaticon2-open-text-book text-white" })
-      ]
-    )
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -20568,6 +20703,251 @@ var staticRenderFns = [
             [_vm._v("5")]
           )
         ]
+      )
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/Classroom/Forms/DeleteClassroom.vue?vue&type=template&id=0940185e&":
+/*!****************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Admin/Classroom/Forms/DeleteClassroom.vue?vue&type=template&id=0940185e& ***!
+  \****************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {
+      staticClass: "modal fade deleteClassroom",
+      attrs: {
+        id: "deleteClassroom",
+        tabindex: "-1",
+        role: "dialog",
+        "aria-labelledby": "staticBackdrop",
+        "aria-hidden": "true"
+      }
+    },
+    [
+      _c(
+        "div",
+        {
+          staticClass: "modal-dialog modal-dialog-centered",
+          attrs: { role: "document" }
+        },
+        [
+          _c("div", { staticClass: "modal-content" }, [
+            _c(
+              "form",
+              {
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.deleteClassroom($event)
+                  }
+                }
+              },
+              [
+                _vm._m(0),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-body" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", [_vm._v("Name")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.Classroom.name,
+                          expression: "Classroom.name"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text", disabled: "" },
+                      domProps: { value: _vm.Classroom.name },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.Classroom, "name", $event.target.value)
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", [_vm._v("Title")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.Classroom.info_title,
+                          expression: "Classroom.info_title"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text", disabled: "" },
+                      domProps: { value: _vm.Classroom.info_title },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.Classroom,
+                            "info_title",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", [_vm._v("Description")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.Classroom.info_description,
+                          expression: "Classroom.info_description"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text", disabled: "" },
+                      domProps: { value: _vm.Classroom.info_description },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.Classroom,
+                            "info_description",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col-xl-12" }, [
+                      _c("div", { staticClass: "form-group" }, [
+                        _c("label", [_vm._v("Remark")]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.Classroom.info_remark,
+                              expression: "Classroom.info_remark"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { type: "text", disabled: "" },
+                          domProps: { value: _vm.Classroom.info_remark },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.Classroom,
+                                "info_remark",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _vm._m(1)
+              ]
+            )
+          ])
+        ]
+      )
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h5",
+        {
+          staticClass: "modal-title text-danger",
+          attrs: { id: "exampleModalLabel" }
+        },
+        [_vm._v("Are you sure to delete?")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [
+          _c("i", {
+            staticClass: "ki ki-close",
+            attrs: { "aria-hidden": "true" }
+          })
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-light-primary font-weight-bold",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("Close")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary font-weight-bold",
+          attrs: { type: "submit" }
+        },
+        [_vm._v("Delete")]
       )
     ])
   }
@@ -21968,6 +22348,41 @@ var render = function() {
             _c("td", [_vm._v(_vm._s(Order.created_at))]),
             _vm._v(" "),
             _c("td", [
+              Order.paid == "0"
+                ? _c(
+                    "span",
+                    {
+                      staticClass:
+                        "label label-warning label-pill label-inline mr-2"
+                    },
+                    [_vm._v("Pending")]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              Order.paid == "1"
+                ? _c(
+                    "span",
+                    {
+                      staticClass:
+                        "label label-success label-pill label-inline mr-2"
+                    },
+                    [_vm._v("Success")]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              Order.paid == "2"
+                ? _c(
+                    "span",
+                    {
+                      staticClass:
+                        "label label-danger label-pill label-inline mr-2"
+                    },
+                    [_vm._v("Decline")]
+                  )
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("td", [
               Order.status == "2"
                 ? _c(
                     "span",
@@ -22037,6 +22452,8 @@ var staticRenderFns = [
         _c("th", [_vm._v("Seller")]),
         _vm._v(" "),
         _c("th", { attrs: { "data-priority": "2" } }, [_vm._v("Date")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Paid Status")]),
         _vm._v(" "),
         _c("th", [_vm._v("Status")]),
         _vm._v(" "),
@@ -22264,6 +22681,41 @@ var render = function() {
             _c("td", [_vm._v(_vm._s(Order.created_at))]),
             _vm._v(" "),
             _c("td", [
+              Order.paid == "0"
+                ? _c(
+                    "span",
+                    {
+                      staticClass:
+                        "label label-warning label-pill label-inline mr-2"
+                    },
+                    [_vm._v("Pending")]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              Order.paid == "1"
+                ? _c(
+                    "span",
+                    {
+                      staticClass:
+                        "label label-success label-pill label-inline mr-2"
+                    },
+                    [_vm._v("Success")]
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              Order.paid == "2"
+                ? _c(
+                    "span",
+                    {
+                      staticClass:
+                        "label label-danger label-pill label-inline mr-2"
+                    },
+                    [_vm._v("Decline")]
+                  )
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("td", [
               Order.status == "2"
                 ? _c(
                     "span",
@@ -22329,6 +22781,8 @@ var staticRenderFns = [
         _c("th", [_vm._v("Seller")]),
         _vm._v(" "),
         _c("th", [_vm._v("Date")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Paid Status")]),
         _vm._v(" "),
         _c("th", [_vm._v("Status")]),
         _vm._v(" "),
@@ -59657,6 +60111,7 @@ Vue.component('order-team-agent-agent-elements', __webpack_require__(/*! ./compo
 Vue.component('admin-classroom-dashboard', __webpack_require__(/*! ./components/Admin/Classroom/Dashboard/dashboard.vue */ "./resources/js/components/Admin/Classroom/Dashboard/dashboard.vue")["default"]);
 Vue.component('admin-classroom-elements', __webpack_require__(/*! ./components/Admin/Classroom/Elements/ElementClassroom.vue */ "./resources/js/components/Admin/Classroom/Elements/ElementClassroom.vue")["default"]);
 Vue.component('admin-classroom-form', __webpack_require__(/*! ./components/Admin/Classroom/Forms/FormClassroom.vue */ "./resources/js/components/Admin/Classroom/Forms/FormClassroom.vue")["default"]);
+Vue.component('admin-classroom-delete', __webpack_require__(/*! ./components/Admin/Classroom/Forms/DeleteClassroom.vue */ "./resources/js/components/Admin/Classroom/Forms/DeleteClassroom.vue")["default"]);
 /********************************************* Agent ****************************************************************/
 
 /**  Customer  */
@@ -59874,6 +60329,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ElementClassroom_vue_vue_type_template_id_455f09d8___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ElementClassroom_vue_vue_type_template_id_455f09d8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/Admin/Classroom/Forms/DeleteClassroom.vue":
+/*!***************************************************************************!*\
+  !*** ./resources/js/components/Admin/Classroom/Forms/DeleteClassroom.vue ***!
+  \***************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _DeleteClassroom_vue_vue_type_template_id_0940185e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DeleteClassroom.vue?vue&type=template&id=0940185e& */ "./resources/js/components/Admin/Classroom/Forms/DeleteClassroom.vue?vue&type=template&id=0940185e&");
+/* harmony import */ var _DeleteClassroom_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DeleteClassroom.vue?vue&type=script&lang=js& */ "./resources/js/components/Admin/Classroom/Forms/DeleteClassroom.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _DeleteClassroom_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _DeleteClassroom_vue_vue_type_template_id_0940185e___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _DeleteClassroom_vue_vue_type_template_id_0940185e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Admin/Classroom/Forms/DeleteClassroom.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Admin/Classroom/Forms/DeleteClassroom.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************!*\
+  !*** ./resources/js/components/Admin/Classroom/Forms/DeleteClassroom.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteClassroom_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./DeleteClassroom.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/Classroom/Forms/DeleteClassroom.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteClassroom_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Admin/Classroom/Forms/DeleteClassroom.vue?vue&type=template&id=0940185e&":
+/*!**********************************************************************************************************!*\
+  !*** ./resources/js/components/Admin/Classroom/Forms/DeleteClassroom.vue?vue&type=template&id=0940185e& ***!
+  \**********************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteClassroom_vue_vue_type_template_id_0940185e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./DeleteClassroom.vue?vue&type=template&id=0940185e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Admin/Classroom/Forms/DeleteClassroom.vue?vue&type=template&id=0940185e&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteClassroom_vue_vue_type_template_id_0940185e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteClassroom_vue_vue_type_template_id_0940185e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

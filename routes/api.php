@@ -277,6 +277,7 @@ Route::group(['middleware' => 'api', 'prefix' => 'v1', 'as' => 'api.'], function
             });
 
             Route::group(['prefix' => 'Deletes', 'as' => 'Deletes.','namespace' => 'Deletes'], function () {
+                Route::post('{classroom_id}/delete-classroom', 'DeleteClassroom@deleteClassroom')->name('delete-classroom');
             });
 
             Route::group(['prefix' => 'Lists', 'as' => 'Lists.','namespace' => 'Lists'], function () {
