@@ -6,6 +6,7 @@
             <th >Buyer</th>
             <th>Seller</th>
             <th data-priority="2">Date</th>
+            <th>Paid Status</th>
             <th>Status</th>
             <th>Total</th>
             <th>View</th>
@@ -40,6 +41,11 @@
                 <span v-if="Order.HQ =='1'">HQ</span>
              </td>
             <td>{{Order.created_at}}</td>
+            <td>
+                <span v-if="Order.paid =='0'" class="label label-warning label-pill label-inline mr-2">Pending</span>
+                <span v-if="Order.paid =='1'" class="label label-success label-pill label-inline mr-2">Success</span>
+                <span v-if="Order.paid =='2'" class="label label-danger label-pill label-inline mr-2">Decline</span>
+            </td>
             <td>
                 <span v-if="Order.status =='2'" class="label label-warning label-pill label-inline mr-2">Pending</span>
                 <span v-if="Order.status =='1'" class="label label-success label-pill label-inline mr-2">Success</span>

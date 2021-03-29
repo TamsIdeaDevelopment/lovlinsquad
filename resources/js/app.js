@@ -136,6 +136,9 @@ Vue.component('order-team-agent-agent-elements', require('./components/Admin/Ord
 Vue.component('admin-classroom-dashboard', require('./components/Admin/Classroom/Dashboard/dashboard.vue').default);
 Vue.component('admin-classroom-elements', require('./components/Admin/Classroom/Elements/ElementClassroom.vue').default);
 Vue.component('admin-classroom-form', require('./components/Admin/Classroom/Forms/FormClassroom.vue').default);
+Vue.component('admin-classroom-delete', require('./components/Admin/Classroom/Forms/DeleteClassroom.vue').default);
+
+
 
 /********************************************* Agent ****************************************************************/
 

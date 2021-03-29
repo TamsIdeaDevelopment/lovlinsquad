@@ -214,6 +214,11 @@
                 file5:'',
             }
         },
+        mounted() {
+            VueEvent.$on('updateTable', () => {
+                this.updateTable();
+            });
+        },
         watch: {
             'data': function() {
                 this.Classroom = this.data;
