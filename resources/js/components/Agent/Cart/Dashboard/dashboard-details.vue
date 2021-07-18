@@ -1,7 +1,13 @@
 <template>
     <div class="d-flex flex-column-fluid">
         <div class="container-fluid">
-            <div class="row">
+            <div class="row" v-if="isSpinner">
+                <div class="col-lg-12 d-flex justify-content-center">
+                    <div class="spinner spinner-success d-flex align-items-center">
+                    </div>
+                </div>
+            </div>
+            <div class="row" v-if="!isSpinner">
                 <div class="col-lg-12">
                     <div class="flex-row-fluid ml-lg-8">
                         <div class="wizard wizard-4" id="kt_wizard_v3" data-wizard-state="step-first" data-wizard-clickable="true">
@@ -165,6 +171,7 @@
                 total_paid : '',
                 SellerDetails:[],
                 CartStatus: false,
+                isSpinner: false,
             }
         },
         mounted() {
@@ -293,6 +300,7 @@
             },
             CreateOrder()
             {
+                this.isSpinner = !this.isSpinner;
                 if(!this.payment_selected)
                 {
                     this.payment_selected = 2;
